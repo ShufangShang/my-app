@@ -3,7 +3,14 @@ import '../css/Board.css';
 import Note from './Note';
 
 class Board extends Component {
+
   constructor() {
+    super();
+    this.state = {
+      notes: []
+    }
+  }
+ /*  constructor() {
     super();
     this.state = {
       notes: [
@@ -21,9 +28,9 @@ class Board extends Component {
         }
       ]
     }
-  }
+  } */
 
-  addNote() {
+ /*  addNote() {
     this.state.notes.push(
       {
         title: "New Note Title",
@@ -35,6 +42,34 @@ class Board extends Component {
         notes: this.state.notes
       }
     );
+  } */
+
+  addNote() {
+    let notes = this.state.notes;
+    notes.push(
+      {
+        id: Date.now()
+      }
+    );
+    this.setState(
+      {
+        notes: this.state.notes
+      }
+    );
+  }
+
+  deleteNote(id){
+    let newNoteArr = this.state.notes;
+    newNoteArr.map((note, index) => {
+      if (id === note.id) {
+        newNoteArr.splice(index,1);
+      }
+    });
+    this.setState(
+      {
+        notes: newNoteArr
+      }
+    );
   }
 
   render() {
@@ -44,7 +79,7 @@ class Board extends Component {
           <div className="row">
             {
               this.state.notes.map(note => {
-                return <Note title={note.title} body={note.body} />
+                return <Note key={note.id} id={note.id} deleteHandler={this.deleteNote.bind(this)} />
               })
             }
           </div>

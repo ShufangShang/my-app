@@ -7,3 +7,16 @@
     position: relative;
     margin-bottom: 10px;
   }
+  
+  
+  .body-textarea {
+    resize: none;
+    width: 100%;
+  }
+  
+  .title-textarea {
+    font-size: 24px;
+    font-weight: bold;
+    resize: none;
+    width: 100%;
+  }
